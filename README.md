@@ -15,4 +15,5 @@
 * フローチャートを描くためのツールは特に指定しない。画像ファイルやURLを記載したtextファイルをプログラムと併せて提出すること。
 
 ## 提出方法
-このrepository内に各自branchを作成し、2019/01/16までに当該branchに提出物をpushすること
+* このrepository内に各自branchを作成し、2019/01/16までに当該branchに提出物をpushすること
+* masterブランチへのpull requestを作成し、review待ち状態にしておくこと
