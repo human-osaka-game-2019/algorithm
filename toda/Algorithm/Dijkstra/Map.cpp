@@ -2,7 +2,7 @@
 
 Map::Map()
 {
-	// Initialize();
+	Initialize();
 }
 
 Map::~Map()
@@ -34,6 +34,11 @@ void Map::DrawMapData(int MapData)
 		cout << "Ｇ" ;
 		break;
 
+	case 4:
+
+		cout << "Ｎ";
+		break;
+
 	default:
 		break;
 
@@ -57,12 +62,18 @@ void Map::Show()
 
 void Map::Initialize()
 {
-	for (int a = 0; a < MapSize::Height; a++)
+/*	
+    for (int a = 0; a < MapSize::Height; a++)
 	{
 		for (int b = 0; b < MapSize::Width; b++)
 		{
 			Maze[a][b] = 0;
 		}
+	}*/
+
+	for (int i = 0; i < MapSize::Height; i++)
+	{
+		maze[i] = Maze[i];
 	}
 
 }
