@@ -56,7 +56,9 @@ void Algorithm::NodeCheck(int* map[], int height, int width)
 	if (rode.value > 2)
 	{
 		map[height][width] = 4;
-		node[NodeNumber].InputPosition(height, width);
+
+		node.emplace_back(height, width);
+		
 		for (int i = 0; i < 4; i ++)
 		{
 			if (RodeDirection[i] < 5)

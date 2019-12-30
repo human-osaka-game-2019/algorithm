@@ -2,6 +2,7 @@
 #define ALGORITHM_H
 
 #include "Map.h"
+#include "Node.h"
 #include <vector>
 
 enum class Direction
@@ -33,7 +34,7 @@ private:
 	int NodeNumber = 0;
 
 	Road rode;
-	Node node[100];
+	std::vector<Node> node;
 };
 
 
