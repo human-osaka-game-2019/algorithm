@@ -21,20 +21,6 @@ struct Road
 	int value;
 };
 
-class Node
-{
-public:
-
-	void InputPosition(int height, int width);
-	std::vector<int> Distance;
-
-private:
-
-	int Position[2];
-
-
-};
-
 class Algorithm
 {
 public:
