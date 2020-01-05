@@ -5,22 +5,6 @@
 #include "Node.h"
 #include <vector>
 
-enum class Direction
-{
-	Up,
-	Down,
-	Right,
-	Left
-};
-
-struct Road
-{
-	Road() : value(0)
-	{
-	}
-
-	int value;
-};
 
 class Algorithm
 {
@@ -31,10 +15,6 @@ public:
 
 private:
 
-	int NodeNumber = 0;
-
-	Road rode;
-	std::vector<Node> node;
 };
 
 

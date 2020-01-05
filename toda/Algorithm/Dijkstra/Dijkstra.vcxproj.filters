@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Algorithm">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Map">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -16,13 +12,16 @@
     <Filter Include="Node">
       <UniqueIdentifier>{fd59c181-0ba3-4837-9b64-765536602ec8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Search">
+      <UniqueIdentifier>{b363d164-6e55-47d6-baaa-ed5a76398edd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Direction">
+      <UniqueIdentifier>{24acf6bc-f813-4d38-a4f6-d6c66cd702de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Algorithm.cpp">
-      <Filter>Algorithm</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Map</Filter>
@@ -30,16 +29,22 @@
     <ClCompile Include="Node.cpp">
       <Filter>Node</Filter>
     </ClCompile>
+    <ClCompile Include="Search.cpp">
+      <Filter>Search</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Algorithm.h">
-      <Filter>Algorithm</Filter>
-    </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Map</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
       <Filter>Node</Filter>
+    </ClInclude>
+    <ClInclude Include="Search.h">
+      <Filter>Search</Filter>
+    </ClInclude>
+    <ClInclude Include="Direction.h">
+      <Filter>Direction</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

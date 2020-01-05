@@ -1,10 +1,10 @@
 ﻿#include "Map.h"
-#include "Algorithm.h"
+#include "Search.h"
 
 int main()
 {
 	Map map;
-	Algorithm algo;
+	Search search;
 
 	map.Show();
 
@@ -14,11 +14,12 @@ int main()
 		{
 			if (map.Maze[a][b] == 0)
 			{
-				algo.NodeCheck(map.maze, a, b);
+				search.NodeCheck(map.maze, a, b);
 			}
 		}
 	}
 	
 	map.Show();
+
 
 }
