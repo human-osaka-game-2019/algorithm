@@ -8,7 +8,7 @@
 #include<vector>
 
 enum class MazeWall {
-	NO=-4,		//! 何もない通路
+	NO=-4,	//! 何もない通路
 	WALL,	//!壁
 	ME_WALL,//!現在伸ばしている壁
 	SEED,	//!壁伸ばし開始点
@@ -36,7 +36,7 @@ private:
 	int m_create_count = 0;
 
 	static const int width = 15;
-	static const int height = 5;
+	static const int height = 7;
 
 public:
 
