@@ -3,8 +3,8 @@
 
 namespace
 {
-	const int maze_width = 15;
-	const int maze_height = 7;
+	const int maze_width = 9;
+	const int maze_height = 9;
 }
 
 int main() 
@@ -59,11 +59,14 @@ int main()
 	maze->MazeCout(_maze);
 
 	//ここから経路探索
-	BellmanFord* search = new BellmanFord(_maze);
+	//BellmanFord* search = new BellmanFord(_maze);
+	Dijkstra* search = new Dijkstra;
 
 	search->MazeInitialize(_maze);
 
-	search->RouteSearchBellmanFord(_maze);
+	//search->RouteSearchBellmanFord(_maze);
+
+	search->RouteSearchDijkstraEx(1, 1, _maze);
 
 	std::cout <<std::endl <<"最短距離は"<< search->GetGool(_maze) <<"です"<< std::endl;
 

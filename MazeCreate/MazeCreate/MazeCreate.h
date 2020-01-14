@@ -35,8 +35,8 @@ private:
 	int m_seed_count = 0;
 	int m_create_count = 0;
 
-	static const int width = 15;
-	static const int height = 7;
+	static const int width = 9;
+	static const int height = 9;
 
 public:
 
