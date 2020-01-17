@@ -3,8 +3,8 @@
 
 namespace
 {
-	const int maze_width = 15;
-	const int maze_height = 15;
+	const int maze_width = 9;
+	const int maze_height = 9;
 }
 
 int main()
@@ -59,11 +59,11 @@ int main()
 	maze->MazeCout(_maze);
 
 	//‚±‚±‚©‚çŒo˜H’Tõ
-	Dijkstra* search = new Dijkstra;
+	BellmanFord* search = new BellmanFord(_maze);
 
 	search->MazeInitialize(_maze);
 
-	search->RouteSearchDijkstraEx(1, 1, _maze);
+	search->RouteSearchBellmanFord(_maze);
 
 	std::cout << std::endl << "Å’Z‹——£‚Í" << search->GetGool(_maze) << "‚Å‚·" << std::endl;
 

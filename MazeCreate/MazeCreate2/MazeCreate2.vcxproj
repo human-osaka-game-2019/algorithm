@@ -18,18 +18,9 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MazeSource.cpp" />
-    <ClCompile Include="RouteSearch.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="MazeHeader.h" />
-    <ClInclude Include="RouteSearch.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{8CF7E239-5401-4EC4-ACAF-EE5CA29C81DC}</ProjectGuid>
+    <ProjectGuid>{4959EF09-4C3E-4945-8A0F-F4C44B22479B}</ProjectGuid>
     <RootNamespace>MazeCreate2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -131,6 +122,15 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MazeCreate.cpp" />
+    <ClCompile Include="RouteSearch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MazeCreate.h" />
+    <ClInclude Include="RouteSearch.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,4 +1,4 @@
-ï»¿#include"MazeCreate.h"
+#include"MazeCreate.h"
 
 int MazeCreate::GetSeedCount() {
 	return m_seed_count;
@@ -164,16 +164,16 @@ void MazeCreate::MazeCout(int _maze[height][width]) {
 			switch (_maze[y][x])
 			{
 			case (int)MazeWall::WALL:
-				std::cout << "â– ";
+				std::cout << "¡";
 				break;
 			case(int)MazeWall::START:
-				std::cout << "ï¼Š";
+				std::cout << "–";
 				break;
 			case(int)MazeWall::GOAL:
-				std::cout << "ï¼ ";
+				std::cout << "—";
 				break;
 			default:
-				std::cout << "ã€€";
+				std::cout << "@";
 				break;
 			}
 		}
@@ -181,11 +181,11 @@ void MazeCreate::MazeCout(int _maze[height][width]) {
 }
 
 bool MazeCreate::ConditionCheck(int width, int height) {
-	//é«˜ã•ã€å¹…ãŒ5æœªæº€ãªã‚‰ã°çµ‚äº†
+	//‚‚³A•‚ª5–¢–ž‚È‚ç‚ÎI—¹
 	if (width < 5 || height < 5) {
 		return false;
 	}
-	//é«˜ã•ã€å¹…ãŒå¶æ•°ãªã‚‰ã°çµ‚äº†
+	//‚‚³A•‚ª‹ô”‚È‚ç‚ÎI—¹
 	if (width % 2 == 0)return false;
 
 	if (height % 2 == 0)return false;
