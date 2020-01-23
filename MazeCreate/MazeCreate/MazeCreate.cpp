@@ -4,10 +4,6 @@ int MazeCreate::GetSeedCount() {
 	return m_seed_count;
 }
 
-int MazeCreate::GetCreateCount() {
-	return m_create_count;
-}
-
 void MazeCreate::GetRandSeed(int _maze[height][width], RandState* rand_state) {
 	do {
 		std::mt19937 mt;
@@ -30,11 +26,6 @@ void MazeCreate::PlusSeedCount() {
 void MazeCreate::MinusSeedCount() {
 	if (GetSeedCount() > 0)
 		m_seed_count--;
-}
-
-void MazeCreate::MinusCreateCount() {
-	if (GetCreateCount() > 0)
-		m_create_count--;
 }
 
 void MazeCreate::Create(int* _maze, MazeWall maze_wall) {

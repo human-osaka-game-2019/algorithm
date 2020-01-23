@@ -1,8 +1,15 @@
-﻿#ifndef ROUTE_SEARCH_H_
+﻿/**
+* @file RouteSearch.h
+*/
+
+#ifndef ROUTE_SEARCH_H_
 #define ROUTE_SEARCH_H_
 
 #include"MazeCreate.h"
 
+/**
+* @brief 経路探索に必要なものをまとめたクラス
+*/
 class Algorithm
 {
 protected:
@@ -19,23 +26,48 @@ public:
 
 	Algorithm() {}
 	virtual ~Algorithm() {}
+	/**
+	* @brief ゴールの位置を返す関数
+	* @param _maze[height][width] 迷路二次元配列
+	* @return ゴールをさす配列
+	*/
 	int GetGool(int _maze[height][width]);
+	/**
+	* @brief 経路探索用初期化関数
+	* @param _maze[height][width] 迷路二次元配列
+	*/
 	void MazeInitialize(int _maze[height][width]);
 };
 
+/**
+* @brief ベルマンフォード法による経路探索クラス
+*/
 class BellmanFord :public Algorithm
 {
 private:
 
-	int max_loop = 0;
-	int crrent_loop = 0;
-
 public:
-	BellmanFord(int _maze[height][width]);
-	~BellmanFord() {};
-	int GetMaxLoop() { return max_loop; }
+	BellmanFord() {}
+	~BellmanFord() {}
+	/**
+	* @brief ベルマンフォード法による経路探索関数
+	* @note 再起関数
+	* @param _maze[height][width] 迷路二次元配列
+	*/
 	void RouteSearchBellmanFord(int _maze[height][width]);
+	/**
+	* @brief 距離を更新し、更新されたか否かを返す関数
+	* @param _maze1 更新できるか確認したい場所
+	* @param _maze2 更新できるか確認したい場所
+	* @param cost 距離のコスト
+	* @return 更新できたならtrueを返す
+	*/
 	bool IsUpdatedCost(int* _maze1, int* _maze2, int cost = 1.0);
+	/**
+	* @brief その地点が壁か否かを返す関数
+	* @param 確認したい位置
+	* @return 壁でなければtrueを返す
+	*/
 	bool IsInexistentWall(int _maze);
 };
 

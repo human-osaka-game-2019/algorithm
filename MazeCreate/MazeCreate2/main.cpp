@@ -3,8 +3,8 @@
 
 namespace
 {
-	const int maze_width = 15;
-	const int maze_height = 15;
+	const int maze_width = 9;
+	const int maze_height = 9;
 }
 
 int main()

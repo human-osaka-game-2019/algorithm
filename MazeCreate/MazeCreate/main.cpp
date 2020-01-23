@@ -59,7 +59,7 @@ int main()
 	maze->MazeCout(_maze);
 
 	//‚±‚±‚©‚çŒo˜H’Tõ
-	BellmanFord* search = new BellmanFord(_maze);
+	BellmanFord* search = new BellmanFord;
 
 	search->MazeInitialize(_maze);
 

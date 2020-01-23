@@ -1,14 +1,21 @@
+ï»¿/**
+* @file RouteSearch.h
+*/
+
 #ifndef ROUTE_SEARCH_H_
 #define ROUTE_SEARCH_H_
 
 #include"MazeCreate.h"
 
+/**
+* @brief çµŒè·¯æ¢ç´¢ã«å¿…è¦ãªã‚‚ã®ã‚’ã¾ã¨ã‚ãŸã‚¯ãƒ©ã‚¹
+*/
 class Algorithm
 {
 protected:
 
-	static const int width = 15;
-	static const int height = 15;
+	static const int width = 9;
+	static const int height = 9;
 
 	int save_gool_x;
 	int save_gool_y;
@@ -19,19 +26,31 @@ public:
 
 	Algorithm() {}
 	virtual ~Algorithm() {}
+	/**
+	* @brief ã‚´ãƒ¼ãƒ«ã®ä½ç½®ã‚’è¿”ã™é–¢æ•°
+	* @param _maze[height][width] è¿·è·¯äºŒæ¬¡å…ƒé…åˆ—
+	* @return ã‚´ãƒ¼ãƒ«ã‚’ã•ã™é…åˆ—
+	*/
 	int GetGool(int _maze[height][width]);
+	/**
+	* @brief çµŒè·¯æ¢ç´¢ç”¨åˆæœŸåŒ–é–¢æ•°
+	* @param _maze[height][width] è¿·è·¯äºŒæ¬¡å…ƒé…åˆ—
+	*/
 	void MazeInitialize(int _maze[height][width]);
 };
 
+/**
+* @brief ãƒ€ã‚¤ã‚¯ã‚¹ãƒˆãƒ©æ³•ã«ã‚ˆã‚‹çµŒè·¯æ¢ç´¢ç”¨
+*/
 class Dijkstra :public Algorithm
 {
 private:
 
 	enum class LoadType
 	{
-		DeadEnd,//! s‚«~‚Ü‚è
-		Aisle,	//! ’Ê˜H
-		Fork,	//!•ªŠò˜H
+		DeadEnd,//! è¡Œãæ­¢ã¾ã‚Š
+		Aisle,	//! é€šè·¯
+		Fork,	//!åˆ†å²è·¯
 	};
 
 	enum class Direction
@@ -50,59 +69,58 @@ public:
 	Dijkstra() {}
 	~Dijkstra() {}
 	/**
-	* @brief ƒ_ƒCƒNƒXƒgƒ‰–@‚É‚æ‚éŒo˜H’Tõ—pÄ‹AŠÖ”
-	* @param x Œ©‚Ä‚¢‚éXÀ•W
-	* @param y Œ©‚Ä‚¢‚éYÀ•W
-	* @param _maze[height][wigth] –À˜H‚Ì\‘¢‘Ì
-	* @return ¸”s‚µ‚½ê‡-1AI—¹‚·‚ê‚Î0‚ª•Ô‚é
+	* @brief ãƒ€ã‚¤ã‚¯ã‚¹ãƒˆãƒ©æ³•ã«ã‚ˆã‚‹çµŒè·¯æ¢ç´¢ç”¨å†å¸°é–¢æ•°
+	* @param x è¦‹ã¦ã„ã‚‹Xåº§æ¨™
+	* @param y è¦‹ã¦ã„ã‚‹Yåº§æ¨™
+	* @param _maze[height][wigth] è¿·è·¯äºŒæ¬¡å…ƒé…åˆ—
+	* @return å¤±æ•—ã—ãŸå ´åˆ-1ã€çµ‚äº†ã™ã‚Œã°0ãŒè¿”ã‚‹
 	*/
 	int RouteSearchDijkstra(int x, int y, int _maze[height][width]);
 
 	/**
-	* @brief ƒXƒ^[ƒg—pŒo˜H’TõŠÖ”
-	* @param x ƒXƒ^[ƒg’n“_‚ÌXÀ•W
-	* @param y ƒXƒ^[ƒg’n“_‚ÌYÀ•W
-	* @param _maze[height][wigth] –À˜H‚Ì\‘¢‘Ì
-	* @return ¸”s‚µ‚½ê‡0‚ª•Ô‚é
+	* @brief ã‚¹ã‚¿ãƒ¼ãƒˆç”¨çµŒè·¯æ¢ç´¢é–¢æ•°
+	* @param x ã‚¹ã‚¿ãƒ¼ãƒˆåœ°ç‚¹ã®Xåº§æ¨™
+	* @param y ã‚¹ã‚¿ãƒ¼ãƒˆåœ°ç‚¹ã®Yåº§æ¨™
+	* @param _maze[height][wigth] è¿·è·¯äºŒæ¬¡å…ƒé…åˆ—
+	* @return å¤±æ•—ã—ãŸå ´åˆ0ãŒè¿”ã‚‹
 	*/
 	int RouteSearchDijkstraEx(int x, int y, int _maze[height][width]);
 
 	/**
-	* @brief ƒRƒXƒg‚ğXV‚Å‚«‚½‚©Šm”F‚·‚é—pŠÖ”
-	* @param &_maze1 Šî€‚Æ‚È‚é’l
-	* @param &_maze2 XV‚µ‚½‚¢’l
-	* @param cost XV‚·‚éƒRƒXƒg
+	* @brief ã‚³ã‚¹ãƒˆã‚’æ›´æ–°ã§ããŸã‹ç¢ºèªã™ã‚‹ç”¨é–¢æ•°
+	* @param &_maze1 åŸºæº–ã¨ãªã‚‹å€¤
+	* @param &_maze2 æ›´æ–°ã—ãŸã„å€¤
+	* @param cost æ›´æ–°ã™ã‚‹ã‚³ã‚¹ãƒˆ
 	*/
 	bool IsUpdatedCost(int& _maze1, int& _maze2, int cost = 1.0);
 
 	/**
-	* @brief ‚Ç‚Ì•ûŒü‚Éi‚Ş‚©Šm”F‚·‚é‚½‚ß‚ÌŠÖ”i’l‚ÌXV‚ ‚èj
-	* @param x ’†S‚Æ‚È‚éXÀ•W
-	* @param y ’†S‚Æ‚È‚éYÀ•W
-	* @param _maze[height][wigth] –À˜H‚Ì\‘¢‘Ì
-	* @return i‚Ş•ûŒüA‚Ç‚±‚É‚ài‚ß‚È‚¢‚ÍNo‚ª•Ô‚é
+	* @brief ã©ã®æ–¹å‘ã«é€²ã‚€ã‹ç¢ºèªã™ã‚‹ãŸã‚ã®é–¢æ•°ï¼ˆå€¤ã®æ›´æ–°ã‚ã‚Šï¼‰
+	* @param x ä¸­å¿ƒã¨ãªã‚‹Xåº§æ¨™
+	* @param y ä¸­å¿ƒã¨ãªã‚‹Yåº§æ¨™
+	* @param _maze[height][wigth] è¿·è·¯äºŒæ¬¡å…ƒé…åˆ—
+	* @return é€²ã‚€æ–¹å‘ã€ã©ã“ã«ã‚‚é€²ã‚ãªã„æ™‚ã¯NoãŒè¿”ã‚‹
 	*/
 	Direction GetRouteDirection(int x, int y, int _maze[height][width]);
 
 	/**
-	* @brief ‚Ç‚Ì•ûŒü‚Éi‚Ş‚©Šm”F‚·‚é‚½‚ß‚ÌŠÖ”i’l‚ÌXV‚È‚µj
-	* @param x ’†S‚Æ‚È‚éXÀ•W
-	* @param y ’†S‚Æ‚È‚éYÀ•W
-	* @param _maze[height][wigth] –À˜H‚Ì\‘¢‘Ì
-	* @return i‚Ş•ûŒüA‚Ç‚±‚É‚ài‚ß‚È‚¢‚ÍNo‚ª•Ô‚é
+	* @brief ã©ã®æ–¹å‘ã«é€²ã‚€ã‹ç¢ºèªã™ã‚‹ãŸã‚ã®é–¢æ•°ï¼ˆå€¤ã®æ›´æ–°ãªã—ï¼‰
+	* @param x ä¸­å¿ƒã¨ãªã‚‹Xåº§æ¨™
+	* @param y ä¸­å¿ƒã¨ãªã‚‹Yåº§æ¨™
+	* @param _maze[height][wigth] è¿·è·¯äºŒæ¬¡å…ƒé…åˆ—
+	* @return é€²ã‚€æ–¹å‘ã€ã©ã“ã«ã‚‚é€²ã‚ãªã„æ™‚ã¯NoãŒè¿”ã‚‹
 	*/
 	Direction GetRouteDirectionEx(int x, int y, int _maze[height][width], int cost = 1);
 
 	/**
-	* @brief Œ»İ‚ÌÀ•W‚ª•ªŠò˜H‚©‚Ç‚¤‚©Šm”F‚·‚éŠÖ”A•ªŠò˜H‚È‚ç‚Îvector‚ÉÀ•W‚ğ•Û‘¶‚·‚é
-	* @note ’l‚ğXV‚Å‚«‚é‚©‚Å”»’f‚µ‚Ä‚¢‚é‚Ì‚ÅA’l‚ğXV‚·‚é‚Æ•ªŠò˜H‚Å‚ ‚Á‚Ä‚à•ªŠò˜Hˆµ‚¢‚Å‚Í‚È‚­‚È‚é
-	* @param x ’†S‚Æ‚È‚éXÀ•W
-	* @param y ’†S‚Æ‚È‚éYÀ•W
-	* @param _maze[height][wigth] –À˜H‚Ì\‘¢‘Ì
-	* @return LoadType‚ª•Ô‚é
+	* @brief ç¾åœ¨ã®åº§æ¨™ãŒåˆ†å²è·¯ã‹ã©ã†ã‹ç¢ºèªã™ã‚‹é–¢æ•°ã€åˆ†å²è·¯ãªã‚‰ã°vectorã«åº§æ¨™ã‚’ä¿å­˜ã™ã‚‹
+	* @note å€¤ã‚’æ›´æ–°ã§ãã‚‹ã‹ã§åˆ¤æ–­ã—ã¦ã„ã‚‹ã®ã§ã€å€¤ã‚’æ›´æ–°ã™ã‚‹ã¨åˆ†å²è·¯ã§ã‚ã£ã¦ã‚‚åˆ†å²è·¯æ‰±ã„ã§ã¯ãªããªã‚‹
+	* @param x ä¸­å¿ƒã¨ãªã‚‹Xåº§æ¨™
+	* @param y ä¸­å¿ƒã¨ãªã‚‹Yåº§æ¨™
+	* @param _maze[height][wigth] è¿·è·¯äºŒæ¬¡å…ƒé…åˆ—
+	* @return LoadTypeãŒè¿”ã‚‹
 	*/
 	LoadType IsInexistentLoad(int x, int y, int _maze[height][width], int cost = 1);
 
 };
 #endif // !ROUTE_SEARCH_H_
-

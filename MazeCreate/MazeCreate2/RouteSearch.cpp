@@ -1,4 +1,4 @@
-#include"RouteSearch.h"
+ï»¿#include"RouteSearch.h"
 
 void Algorithm::MazeInitialize(int _maze[height][width])
 {
@@ -6,7 +6,7 @@ void Algorithm::MazeInitialize(int _maze[height][width])
 	{
 		for (int x = 1; x < width - 1; x++)
 		{
-			//‘å‚«‚È’l‚Å‰Šú‰»
+			//å¤§ããªå€¤ã§åˆæœŸåŒ–
 			if (_maze[y][x] == (int)MazeWall::NO)
 			{
 				_maze[y][x] = 99;
