@@ -51,7 +51,8 @@ void Map::Show()
 	{
 		for (int b = 0; b < MapSize::Width; b++)
 		{
-			DrawMapData(Maze[a][b]);
+			int map_data = Maze[a][b];
+			DrawMapData(map_data);
 		}
 
 		cout << endl;

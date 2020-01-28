@@ -19,10 +19,10 @@ public:
 
 	void InputPosition(int height, int width);
 
+	void DeleteRoadDirection(Direction deleteDirection);
 
 	//! 進める方向
 	std::vector<Direction> SearchDirection;
-	std::vector<Direction> SearchedDirection;
 
 	std::vector<int> NextNodes;
 

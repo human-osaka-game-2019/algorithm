@@ -29,19 +29,29 @@
 
 	 int Node確認関数(int* map[], int x, int y);
 
-	 void Move(Direction direction,int x, int y);
+	 void Move(Direction direction);
 
 	 void NodeDirectionChoice(int node_number);
  private:
+
+	 int X;
+	 int Y;
 
 	 int NodeNumber = 0;
 	 int node_number;
 	 int cost = 0;
 
+	 int count = 0;
+
+	 std::vector<int> Course;
+
+	 std::vector<int> SearchList;
+	 std::vector<int> NodeList;
+
 	 Direction direction;
 	 Direction NotDirection = Direction::UnKnown;
 
-	 Road rode;
+	 Road road;
 	 std::vector<Node> node;
 
  };

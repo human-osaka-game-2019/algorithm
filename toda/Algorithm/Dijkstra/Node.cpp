@@ -38,3 +38,18 @@ void Node::Show()
 	std::cout << "Node場所 : " << Position[0] << " " << Position[1] << std::endl;
 	std::cout << std::endl;
 }
+
+void Node::DeleteRoadDirection(Direction deleteDirection)
+{
+	for (auto it = SearchDirection.begin(); it != SearchDirection.end();) {
+		// 条件一致した要素を削除する
+		if (*it == deleteDirection) {
+			// 削除された要素の次を指すイテレータが返される。
+			it = SearchDirection.erase(it);
+		}
+		// 要素削除をしない場合に、イテレータを進める
+		else {
+			++it;
+		}
+	}
+}

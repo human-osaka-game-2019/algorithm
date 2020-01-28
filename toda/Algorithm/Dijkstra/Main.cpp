@@ -21,5 +21,6 @@ int main()
 	
 	map.Show();
 
+	search.flow(map.maze,1,1);
 
 }

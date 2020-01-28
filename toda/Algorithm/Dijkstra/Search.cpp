@@ -13,8 +13,8 @@ void Search::NodeCheck(int* map[], int height, int width)
 
 			if (map[height + 1][width] == 0 || map[height + 1][width] == 4)
 			{
-				rode.value += 1;
-				RodeDirection[rode.value] = Direction::Down;
+				road.value += 1;
+				RodeDirection[road.value] = Direction::Down;
 			}
 
 			break;
@@ -23,8 +23,8 @@ void Search::NodeCheck(int* map[], int height, int width)
 
 			if (map[height - 1][width] == 0 || map[height - 1][width] == 4)
 			{
-				rode.value += 1;
-				RodeDirection[rode.value] = Direction::Up;
+				road.value += 1;
+				RodeDirection[road.value] = Direction::Up;
 			}
 
 			break;
@@ -33,8 +33,8 @@ void Search::NodeCheck(int* map[], int height, int width)
 
 			if (map[height][width + 1] == 0 || map[height][width + 1] == 4)
 			{
-				rode.value += 1;
-				RodeDirection[rode.value] = Direction::Right;
+				road.value += 1;
+				RodeDirection[road.value] = Direction::Right;
 			}
 
 			break;
@@ -43,8 +43,8 @@ void Search::NodeCheck(int* map[], int height, int width)
 
 			if (map[height][width - 1] == 0 || map[height][width - 1] == 4)
 			{
-				rode.value += 1;
-				RodeDirection[rode.value] = Direction::Left;
+				road.value += 1;
+				RodeDirection[road.value] = Direction::Left;
 			}
 
 			break;
@@ -53,7 +53,7 @@ void Search::NodeCheck(int* map[], int height, int width)
 		direction += 1;
 	}
 
-	if (rode.value > 2)
+	if (road.value > 2)
 	{
 		map[height][width] = 4;
 
@@ -73,29 +73,29 @@ void Search::NodeCheck(int* map[], int height, int width)
 		NodeNumber += 1;
 	}
 
-	rode.value = 0;
+	road.value = 0;
 }
 
 
 Direction Search::AdvanceDirection(int* map[], int x, int y)
 {
 
-	if (NotDirection != Direction::Up && (map[y - 1][x] == 0 || map[y - 1][x] == 4))
+	if (NotDirection != Direction::Up && (map[y - 1][x] == 0 || map[y - 1][x] == 4 || map[y - 1][x] == 3))
 	{
 		NotDirection = Direction::Down;
 		return Direction::Up;
 	}
-	else if (NotDirection != Direction::Down && (map[y + 1][x] == 0 || map[y + 1][x] == 4))
+	else if (NotDirection != Direction::Down && (map[y + 1][x] == 0 || map[y + 1][x] == 4 || map[y + 1][x] == 3))
 	{
 		NotDirection = Direction::Up;
 		return Direction::Down;
 	}
-	else if (NotDirection != Direction::Left && (map[y][x - 1] == 0 || map[y][x - 1] == 4))
+	else if (NotDirection != Direction::Left && (map[y][x - 1] == 0 || map[y][x - 1] == 4 || map[y][x - 1] == 3))
 	{
 		NotDirection = Direction::Right;
 		return Direction::Left;
 	}
-	else if (NotDirection != Direction::Right && (map[y][x + 1] == 0 || map[y][x + 1] == 4))
+	else if (NotDirection != Direction::Right && (map[y][x + 1] == 0 || map[y][x + 1] == 4 || map[y][x + 1] == 3))
 	{
 		NotDirection = Direction::Left;
 		return Direction::Right;
@@ -136,21 +136,21 @@ int Search::Node確認関数(int* map[], int x, int y)
 	return -1;
 }
 
-void Search::Move(Direction direction,int x, int y)
+void Search::Move(Direction direction)
 {
 	switch (direction)
 	{
 	case Direction::Up:
-		y -= 1;
+		Y -= 1;
 		break;
 	case Direction::Down:
-		y += 1;
+		Y += 1;
 		break;
 	case Direction::Right:
-		x += 1;
+		X += 1;
 		break;
 	case Direction::Left:
-		x -= 1;
+		X -= 1;
 		break;
 	default:
 		break;
@@ -162,17 +162,27 @@ void Search::NodeDirectionChoice(int node_number)
 {
 	direction = node[node_number].SearchDirection[0];
 
-	std::size_t size = node[node_number].SearchedDirection.size;
-
-	for (int i = 0; i < size; i++)
+	switch (direction)
 	{
-		if ( direction != node[node_number].SearchedDirection[i])
-		{
-			direction = Direction::UnKnown;
-			break;
-		}
-
+	case Direction::Up:
+		NotDirection = Direction::Down;
+		break;
+	case Direction::Down:
+		NotDirection = Direction::Up;
+		break;
+	case Direction::Right:
+		NotDirection = Direction::Left;
+		break;
+	case Direction::Left:
+		NotDirection = Direction::Right;
+		break;
+	default:
+		NotDirection = Direction::UnKnown;
+		break;
 	}
+
+	node[node_number].DeleteRoadDirection(direction);
+
 
 }
 
@@ -186,24 +196,32 @@ void Search::NodeDirectionChoice(int node_number)
 
 void Search::flow(int* map[],const int Start_x,const int Start_y)
 {
-	int X = Start_x;
-	int Y = Start_y;
+	X = Start_x;
+	Y = Start_y;
 	bool NodeCheckFlag;
 
-	while (true)
+	while (count < 200)
 	{
-
+		count++;
 		// nodeに着いたら
 		if (IsNode(map, X, Y) == true)
 		{
 			// どのnode か区別
 			node_number = Node確認関数(map, X, Y);
 
+			if (Course.empty() == true || Course.back() != node_number)
+			{
+				Course.push_back(node_number);
+			}
+
+
 			if (direction != Direction::UnKnown)
 			{
-				// node の保持している進める方向の情報を消す(到着した方向)
-				node[node_number].SearchedDirection.push_back(direction);
+				// node の保持している進める方向の情報を消す(進んでいる方向の逆)
+				node[node_number].DeleteRoadDirection(NotDirection);
 			}
+
+
 
 			// nodeの方向を算出する関数
 			NodeDirectionChoice(node_number);
@@ -242,7 +260,28 @@ void Search::flow(int* map[],const int Start_x,const int Start_y)
 			cost += 1;
 
 			// 移動関数
-			Move(direction, X, Y);
+			Move(direction);
+		}
+
+		if (map[X][Y] == 3)
+		{
+			int Coust = 0;
+
+			std::cout << "node順は ";
+			for (auto number : Course)
+			{
+				Coust += node[number].cost;
+
+				std::cout << " " << number << " ";
+			}
+
+			std::cout << std::endl;
+
+			Coust += cost;
+
+			std::cout << "最短経路は : " << Coust << std::endl;
+
+			break;
 		}
 
 	}
