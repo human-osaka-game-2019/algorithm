@@ -115,7 +115,7 @@ bool Search::IsNode(int* map[], int x, int y)
 	return false;
 }
 
-int Search::Node確認関数(int* map[], int x, int y)
+int Search::CheckNodeNumber(int* map[], int x, int y)
 {
 	int size = node.size();
 
@@ -207,7 +207,7 @@ void Search::flow(int* map[],const int Start_x,const int Start_y)
 		if (IsNode(map, X, Y) == true)
 		{
 			// どのnode か区別
-			node_number = Node確認関数(map, X, Y);
+			node_number = CheckNodeNumber(map, X, Y);
 
 			if (Course.empty() == true || Course.back() != node_number)
 			{
