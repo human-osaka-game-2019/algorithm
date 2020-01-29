@@ -1,5 +1,5 @@
-﻿#ifndef EXTEND_WALL_H_
-#define EXTEND_WALL_H_
+﻿#ifndef MAZE_WALL_H_
+#define MAZE_WALL_H_
 
 #include <string>
 #include <vector>
@@ -8,49 +8,27 @@
 #include <iostream>
 #include <random>
 
-using namespace std;
+#include "Main.h"
 
 class Maze
 {
 public:
-	
-	//方向
-	enum Direction
-	{
-		//上
-		UP,
-		//下
-		DOWN,
-		//右
-		RIGHT,
-		//左
-		LEFT
-	};
 
-	enum PillarState
-	{
-		//拡張
-		Expanding = -2,
-		//拡張済み
-		Expanded,
-	};
-
-	//
-	enum MapState
-	{
-		//道
-		Path,
-		//壁
-		Wall,
-		//ゴール
-		Goal,
-		//スタート
-		Start,
-	};
-
-	
 	//初期化
 	void InitWall();
+
+	void Create();
+
+
+	//マップの
+	static const int width = 13;
+	static const int height = 13;
+
+	int map[width * height];
+
+
+private:
+
 	//終わっているか判断する関数
 	bool Finish();
 	//ゴールまでが一本道かどうか
@@ -58,7 +36,7 @@ public:
 	//閉じた領域がない
 	void ClosedArea();
 	//ステージの描画
-	void DrawMap(int wall[]);
+	void DrawMap();
 	//拡張中の壁にする
 	void ExpandWall();
 	//方向をランダムにする関数
@@ -74,15 +52,12 @@ public:
 
 	//方向を見て
 	int SearchDirction(int wall, int direction);
-	
-	//マップの
-	static const int width = 13;
-	static const int height = 13;
+
+
 
 	static const int pillar_width = width / 2 + 1;
 	static const int pillar_height = height / 2 + 1;
 
-	int map[width * height];
 
 	int pillar[pillar_width * pillar_height];//柱を立てる場所
 	//柱を立てはじめ
@@ -91,9 +66,9 @@ public:
 	int player = 12;
 	int playerdirection;
 
-	std::mt19937 mt{ std::random_device{}()};
+	std::mt19937 mt{ std::random_device{}() };
 
-	Maze::Direction direction;
+	Direction direction;
 };
 
 

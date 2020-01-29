@@ -2,7 +2,6 @@
 
 #include "Maze.h"
 
-
 int main()
 {
 	Maze maze;
@@ -10,10 +9,6 @@ int main()
 	maze.InitWall();
 	//迷路生成
 	maze.Create();
-
-
-
-
 }
 
 
